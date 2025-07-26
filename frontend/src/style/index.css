@@ -1,68 +1,300 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+:root{
+  --ttls-fs: 3rem;
+  --sbttls-fs: 1.5rem;
+  --txt-fs: 1rem;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --main-fg-clr: #DA4D04;
+  --second-fg-color: #41205A;
+  --main-bg-clr: #AE92C2;
+  --second-bg-clr: #200534;
+  --accent-clr: #E2FF00;
+  --success-clr: #00FF1E;
+  --error-clr: #FF0000;
+  --warn-clr: #A3A000;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+*{
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #000;
+}
+
+body{
+  width: 100%;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a{
+  text-decoration: none;
+  gap: 10px;
+  max-width: 260px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.title{
+  font-size: var(--ttls-fs);
+  font-weight: 900;
+  word-break: break-word;
+}
+
+.subtitle{
+  font-size: var(--sbttls-fs);
+  font-weight: 700;
+}
+
+.text{
+  font-size: var(--txt-fs);
+}
+
+.lg-txt{
+  font-size: 1.3rem;
+}
+
+input, .main-btn, .secondary-btn, select, option{
+  border: none;
+  border-radius: 50px;
+  min-width: 70px;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--second-bg-clr);
+  color: #fff;
+  font-size: var(--txt-fs);
+}
+
+input, select{
+  padding: 7px 15px;
+}
+
+.main-btn, .secondary-btn, a{
+  width: 100% !important;
+  margin: 5px 0;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.main-btn{
+  background-color: var(--main-bg-clr);
+  padding: 10px 40px;
+}
+
+.secondary-btn{
+  border: 2px solid var(--second-fg-color);
+  color: var(--second-fg-color);
+  background: none;
+  padding: 8px 40px;
+}
+
+.link{
+  font-size: var(--txt-fs);
+  transition: all ease-in-out .1s;
+  display: inline-block;
+}
+
+.link:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#hamburger{
+  cursor: pointer;
+  display: none;
+}
+
+#logo img{
+  user-select: none;
+  cursor: pointer;
+  width: 90%;
+  max-width: 180px;
+}
+
+#lang{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading{
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  padding: 1rem;
+  background: #f0f0f0;
+  overflow-y: auto;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  border-right: 1px solid #ccc;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -250px;
+  z-index: 100;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  transform: translateX(250px);
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    position: relative;
+    transform: translateX(0);
+    left: 0;
   }
-  a:hover {
-    color: #747bff;
+
+  .close-btn {
+    display: none;
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+.sidebar-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.menu a {
+  display: block;
+  margin: 0.5rem 0;
+  color: #333;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  font-weight: bold;
+}
+
+.footer {
+  margin-top: auto;
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.profile-banner {
+  border: 1px dashed #ccc;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background: #fafafa;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.email {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.logout {
+  margin-top: 0.5rem;
+  background: none;
+  border: 1px solid red;
+  color: red;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.menu-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.header-logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+
+
+@media screen and (min-width: 767px) and (max-width: 991px){
+  /* Tablet */
+
+  body{
+      padding-top: 55px;
   }
+
+  .content{
+    margin-top: 0;
+    gap: 30px;
+  }
+
+}
+
+@media screen and (min-width: 50px) and (max-width: 767px){
+
+  /* Mobile */
+
+  :root{
+    --ttls-fs: 2.5rem;
+  }
+
+  body{
+      padding-top: 50px;
+  }
+
+
+  .title{
+    line-height: 1.1;
+  }
+
+  .content{
+    margin-top: 0;
+    padding: 5% 5%;
+    gap: 25px;
+  }
+
 }
